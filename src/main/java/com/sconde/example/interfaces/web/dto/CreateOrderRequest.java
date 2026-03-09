@@ -1,4 +1,6 @@
 package com.sconde.example.interfaces.web.dto;
 
-public class CreateOrderRequest {
+import java.util.List;
+
+public record CreateOrderRequest(String customerId, List<CreateOrderItemRequest> items) {
 }

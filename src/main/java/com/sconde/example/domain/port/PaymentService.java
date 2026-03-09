@@ -1,4 +1,4 @@
-package com.sconde.example.usecase.port;
+package com.sconde.example.domain.port;
 
 import java.math.BigDecimal;
 

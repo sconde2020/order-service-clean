@@ -1,22 +1,44 @@
 package com.sconde.example.usecase;
 
 import com.sconde.example.domain.model.Order;
+import com.sconde.example.domain.model.OrderItem;
+import com.sconde.example.domain.model.Product;
 import com.sconde.example.domain.repository.OrderRepository;
+import com.sconde.example.domain.repository.ProductRepository;
+import com.sconde.example.usecase.command.CreateOrderCommand;
+import com.sconde.example.usecase.command.CreateOrderItemCommand;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
 public class CreateOrderUseCase {
 
-    private final OrderRepository repository;
+    private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
 
-    public CreateOrderUseCase(OrderRepository repository){
-        this.repository = repository;
+    public Order execute(CreateOrderCommand command) {
+        List<Long> productIds = command.items().stream()
+                .map(CreateOrderItemCommand::productId)
+                .toList();
+
+        List<Product> products = productRepository.findAllByIds(productIds);
+
+        List<OrderItem> items = command.items().stream()
+                .map(itemRequest -> {
+                    Product product = products.stream()
+                            .filter(p -> p.getId().equals(itemRequest.productId()))
+                            .findFirst()
+                            .orElseThrow();
+                    return new OrderItem(product, itemRequest.quantity());
+                })
+                .toList();
+
+        Order order = new Order(command.customerId(), items);
+
+        return orderRepository.save(order);
     }
 
-    public Long execute(){
-
-        Order order = new Order();
-
-        repository.save(order);
-
-        return order.getId();
-    }
 }

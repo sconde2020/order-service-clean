@@ -1,4 +1,4 @@
 package com.sconde.example.interfaces.web.dto;
 
-public class AddItemRequest {
+public record AddItemRequest(Long productId, int quantity) {
 }

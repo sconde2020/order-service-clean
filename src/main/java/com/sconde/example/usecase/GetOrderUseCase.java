@@ -2,14 +2,16 @@ package com.sconde.example.usecase;
 
 import com.sconde.example.domain.model.Order;
 import com.sconde.example.domain.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
 public class GetOrderUseCase {
 
-    private final OrderRepository repository;
-
-    public GetOrderUseCase(OrderRepository repository) {
-        this.repository = repository;
-    }
+    OrderRepository repository;
 
     public Order execute(Long id) {
         return repository.findById(id).orElseThrow();

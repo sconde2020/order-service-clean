@@ -4,18 +4,27 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"LombokGetterMayBeUsed", "LombokSetterMayBeUsed"})
 public class Order {
 
     private Long id;
+    private String customerId;
     private final List<OrderItem> items = new ArrayList<>();
     private OrderStatus status = OrderStatus.CREATED;
 
     public Order() {
     }
 
-    public Order(Long id, OrderStatus status) {
+    public Order(String customerId, List<OrderItem> items) {
+        this.customerId = customerId;
+        this.items.addAll(items);
+    }
+
+    public Order(Long id, String customerId, OrderStatus status, List<OrderItem> items) {
         this.id = id;
+        this.customerId = customerId;
         this.status = status;
+        this.items.addAll(items);
     }
 
     public void addItem(Product product, int quantity){
@@ -50,4 +59,11 @@ public class Order {
         return status;
     }
 
+     public String getCustomerId() {
+        return customerId;
+    }
+
+     public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
 }

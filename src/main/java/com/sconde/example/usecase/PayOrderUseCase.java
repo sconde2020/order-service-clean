@@ -2,21 +2,20 @@ package com.sconde.example.usecase;
 
 import com.sconde.example.domain.model.Order;
 import com.sconde.example.domain.repository.OrderRepository;
-import com.sconde.example.usecase.port.PaymentService;
+import com.sconde.example.domain.port.PaymentService;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
 public class PayOrderUseCase {
 
-    private final OrderRepository repository;
-    private final PaymentService paymentService;
+    OrderRepository repository;
+    PaymentService paymentService;
 
-    public PayOrderUseCase(OrderRepository repository,
-                           PaymentService paymentService){
-
-        this.repository = repository;
-        this.paymentService = paymentService;
-    }
-
-    public void execute(Long orderId){
+    public Order execute(Long orderId){
 
         Order order = repository.findById(orderId)
                 .orElseThrow();
@@ -25,6 +24,6 @@ public class PayOrderUseCase {
 
         order.markPaid();
 
-        repository.save(order);
+        return repository.save(order);
     }
 }

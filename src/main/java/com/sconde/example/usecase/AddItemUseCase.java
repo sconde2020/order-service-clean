@@ -3,22 +3,31 @@ package com.sconde.example.usecase;
 import com.sconde.example.domain.model.Order;
 import com.sconde.example.domain.model.Product;
 import com.sconde.example.domain.repository.OrderRepository;
+import com.sconde.example.domain.repository.ProductRepository;
+import com.sconde.example.usecase.command.AddItemCommand;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Service;
 
+
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
 public class AddItemUseCase {
 
-    private final OrderRepository repository;
+    OrderRepository orderRepository;
+    ProductRepository productRepository;
 
-    public AddItemUseCase(OrderRepository repository) {
-        this.repository = repository;
-    }
+    public Order execute(Long orderId, AddItemCommand command) {
 
-    public void execute(Long orderId, Product product, int quantity){
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
 
-        Order order = repository.findById(orderId)
-                .orElseThrow();
+        Product product = productRepository.findById(command.productId())
+                .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        order.addItem(product, quantity);
+        order.addItem(product, command.quantity());
 
-        repository.save(order);
+        return orderRepository.save(order);
     }
 }
