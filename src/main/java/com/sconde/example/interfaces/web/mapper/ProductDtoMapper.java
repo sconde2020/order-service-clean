@@ -3,7 +3,7 @@ package com.sconde.example.interfaces.web.mapper;
 import com.sconde.example.domain.model.Product;
 import com.sconde.example.interfaces.web.dto.CreateProductRequest;
 import com.sconde.example.interfaces.web.dto.ProductResponse;
-import com.sconde.example.usecase.command.CreateProductCommand;
+import com.sconde.example.application.command.CreateProductCommand;
 import org.springframework.stereotype.Component;
 
 @Component

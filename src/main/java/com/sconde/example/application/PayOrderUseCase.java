@@ -1,4 +1,4 @@
-package com.sconde.example.usecase;
+package com.sconde.example.application;
 
 import com.sconde.example.domain.model.Order;
 import com.sconde.example.domain.repository.OrderRepository;

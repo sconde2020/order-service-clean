@@ -1,12 +1,12 @@
-package com.sconde.example.usecase;
+package com.sconde.example.application;
 
 import com.sconde.example.domain.model.Order;
 import com.sconde.example.domain.model.OrderItem;
 import com.sconde.example.domain.model.Product;
 import com.sconde.example.domain.repository.OrderRepository;
 import com.sconde.example.domain.repository.ProductRepository;
-import com.sconde.example.usecase.command.CreateOrderCommand;
-import com.sconde.example.usecase.command.CreateOrderItemCommand;
+import com.sconde.example.application.command.CreateOrderCommand;
+import com.sconde.example.application.command.CreateOrderItemCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

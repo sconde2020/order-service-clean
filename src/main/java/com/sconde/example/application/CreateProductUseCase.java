@@ -1,8 +1,8 @@
-package com.sconde.example.usecase;
+package com.sconde.example.application;
 
 import com.sconde.example.domain.model.Product;
 import com.sconde.example.domain.repository.ProductRepository;
-import com.sconde.example.usecase.command.CreateProductCommand;
+import com.sconde.example.application.command.CreateProductCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;

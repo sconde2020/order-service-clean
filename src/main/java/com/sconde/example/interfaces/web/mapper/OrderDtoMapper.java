@@ -4,9 +4,9 @@ import com.sconde.example.domain.model.Order;
 import com.sconde.example.interfaces.web.dto.AddItemRequest;
 import com.sconde.example.interfaces.web.dto.CreateOrderRequest;
 import com.sconde.example.interfaces.web.dto.OrderResponse;
-import com.sconde.example.usecase.command.AddItemCommand;
-import com.sconde.example.usecase.command.CreateOrderCommand;
-import com.sconde.example.usecase.command.CreateOrderItemCommand;
+import com.sconde.example.application.command.AddItemCommand;
+import com.sconde.example.application.command.CreateOrderCommand;
+import com.sconde.example.application.command.CreateOrderItemCommand;
 import org.springframework.stereotype.Component;
 
 @Component
