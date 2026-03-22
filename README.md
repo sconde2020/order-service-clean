@@ -1,4 +1,4 @@
-# Order Service - Clean Architecture Demo
+# Order Service Clean - Clean Architecture Demo
 
 Demo project showcasing Clean Architecture principles with Java 21 and Spring Boot 4.
 
@@ -7,7 +7,7 @@ Demo project showcasing Clean Architecture principles with Java 21 and Spring Bo
 ```
 src/main/java/com/sconde/example/
 ├── domain/          # Business logic & entities
-├── usecase/         # Use cases (application layer)
+├── application/     # Use cases (application layer)
 ├── interfaces/      # REST controllers & DTOs
 └── infrastructure/  # DB, external services
 ```
@@ -92,8 +92,8 @@ curl -X POST http://localhost:8080/orders/1/pay
 ## Project Structure
 
 - **domain/model**: Business entities (Order, Product, OrderItem)
-- **usecase**: Business operations (CreateOrderUseCase, PayOrderUseCase)
-- **usecase/command**: Input DTOs for use cases
+- **application**: Business operations (CreateOrderUseCase, PayOrderUseCase)
+- **application/command**: Input DTOs for use cases
 - **interfaces/web**: REST controllers
 - **interfaces/web/dto**: API request/response models
 - **infrastructure**: JPA repositories, adapters
